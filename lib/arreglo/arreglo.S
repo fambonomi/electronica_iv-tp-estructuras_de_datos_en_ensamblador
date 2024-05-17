@@ -158,5 +158,5 @@ defun Arreglo_intercambia // r0: desc., r1: i, r2: j
     pop {r4-r6,pc}
 3:
     mov r0,#-1
-    b 2
+    b 2b
 endfun Arreglo_intercambia
