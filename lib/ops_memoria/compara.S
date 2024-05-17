@@ -18,7 +18,23 @@
 
     .type comparaMemoria, %function
     .global comparaMemoria
-comparaMemoria:
-    mov r0,#0
+comparaMemoria: // R0: base region izq., R1 : base region der., R2: nro. de bytes
+    add r2,r0
+0:
+    cmp r0,r2
+    bhs 3f
+    ldrb r3,[r0],#1
+    ldrb r12,[r1],#1
+    cmp r3,r12
+    beq 0b
+    bge 2f
+    mov r0,#-1
+1:
     bx lr
+2:
+    mov r0,#1
+    b 1b
+3:
+    mov r0,#0
+    b 1b
     .size comparaMemoria, . - comparaMemoria
